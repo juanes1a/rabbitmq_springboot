@@ -17,7 +17,7 @@ public class ApiRest {
 
     @PostMapping(path = "/user")
     public ResponseEntity createUser(@RequestBody UserRegistrationRequest request) {
-        rabbitTemplate.convertAndSend("", "user-registration", request);
+        rabbitTemplate.convertAndSend("", "q.user-registration", request);
         return new ResponseEntity<String>("Message Send",HttpStatus.OK);
     }
 }
