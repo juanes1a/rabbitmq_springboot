@@ -28,4 +28,9 @@ public class UserRegistrationListener {
         log.info("Executing User Registration Event: {}", event);
         throw new RuntimeException("Registration Failed");
     }
+
+    @RabbitListener(queues = {"q.fall-back-registration"})
+    public void onRegistrationFailure(UserRegistrationRequest failedRegistration){
+        log.info("Executing fallback for failed registration {}", failedRegistration);
+    }
 }
